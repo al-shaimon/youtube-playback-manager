@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Speed Manager</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>🎬 YouTube Speed Manager</h2>
+      </div>
+
+      <div class="speed-section">
+        <div class="current-speed">
+          <span class="label">Current Speed:</span>
+          <span class="speed-value" id="currentSpeed">1.0x</span>
+        </div>
+
+        <div class="speed-controls">
+          <div class="input-group">
+            <label for="speedInput">Set Speed:</label>
+            <input type="number" id="speedInput" min="0.1" max="10" step="0.1" value="1.0" />
+            <span class="unit">x</span>
+          </div>
+
+          <button id="applySpeed" class="apply-btn">Apply Speed</button>
+        </div>
+
+        <div class="preset-speeds">
+          <h3>Quick Presets:</h3>
+          <div class="preset-buttons">
+            <button class="preset-btn" data-speed="0.25">0.25x</button>
+            <button class="preset-btn" data-speed="0.5">0.5x</button>
+            <button class="preset-btn" data-speed="0.75">0.75x</button>
+            <button class="preset-btn" data-speed="1.0">1.0x</button>
+            <button class="preset-btn" data-speed="1.25">1.25x</button>
+            <button class="preset-btn" data-speed="1.5">1.5x</button>
+            <button class="preset-btn" data-speed="1.75">1.75x</button>
+            <button class="preset-btn" data-speed="2.0">2.0x</button>
+            <button class="preset-btn" data-speed="2.5">2.5x</button>
+            <button class="preset-btn" data-speed="3.0">3.0x</button>
+            <button class="preset-btn" data-speed="4.0">4.0x</button>
+            <button class="preset-btn" data-speed="5.0">5.0x</button>
+          </div>
+        </div>
+
+        <div class="settings">
+          <div class="setting-item">
+            <label class="checkbox-container">
+              <input type="checkbox" id="autoApply" checked />
+              <span class="checkmark"></span>
+              Auto-apply saved speed
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <label class="checkbox-container">
+              <input type="checkbox" id="persistSpeed" checked />
+              <span class="checkmark"></span>
+              Remember speed across videos
+            </label>
+          </div>
+        </div>
+
+        <div class="reset-section">
+          <button id="resetSpeed" class="reset-btn">Reset to Default (1.0x)</button>
+        </div>
+      </div>
+
+      <div class="info">
+        <p>
+          <strong>Note:</strong> This extension allows unlimited playback speeds beyond YouTube's
+          default 0.25x-2x range.
+        </p>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
