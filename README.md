@@ -243,7 +243,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Developer**: [Al Shaimon](https://github.com/al-shaimon)
 - **Email**: Contact through GitHub profile
-- **Website**: [Portfolio](https://al-shaimon.github.io)
+- **Website**: [Portfolio](https://alshaimon.com)
 
 ---
 
