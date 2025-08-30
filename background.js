@@ -1,9 +1,9 @@
 // Background script for YouTube Playback Speed Manager
-console.log('YouTube Speed Manager background script loaded');
+// console.log('YouTube Speed Manager background script loaded');
 
 // Handle extension installation
 chrome.runtime.onInstalled.addListener((details) => {
-  console.log('Extension installed:', details);
+  // console.log('Extension installed:', details);
 
   // Set default settings
   chrome.storage.local.set({
@@ -19,14 +19,14 @@ chrome.runtime.onInstalled.addListener((details) => {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   // Only process when tab is completely loaded
   if (changeInfo.status === 'complete' && tab.url && tab.url.includes('youtube.com')) {
-    console.log('YouTube tab updated:', tab.url);
+    // console.log('YouTube tab updated:', tab.url);
 
     try {
       // Get saved settings
       const result = await chrome.storage.local.get(['speedSettings', 'currentSpeed']);
 
       if (result.speedSettings && result.speedSettings.autoApply && result.currentSpeed) {
-        console.log('Auto-applying saved speed:', result.currentSpeed);
+        // console.log('Auto-applying saved speed:', result.currentSpeed);
 
         // Try multiple times with different delays to ensure it works
         const applySpeed = () => {
@@ -38,9 +38,9 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
             },
             (response) => {
               if (chrome.runtime.lastError) {
-                console.log('Could not send message to tab:', chrome.runtime.lastError.message);
+                // console.log('Could not send message to tab:', chrome.runtime.lastError.message);
               } else {
-                console.log('Speed applied to tab:', response);
+                // console.log('Speed applied to tab:', response);
               }
             }
           );
@@ -52,14 +52,14 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         setTimeout(applySpeed, 6000); // 6 seconds
       }
     } catch (error) {
-      console.error('Error in tab update handler:', error);
+      // console.error('Error in tab update handler:', error);
     }
   }
 });
 
 // Handle messages from popup or content scripts
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log('Background received message:', message);
+  // console.log('Background received message:', message);
 
   switch (message.action) {
     case 'getActiveTab':
@@ -74,7 +74,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       break;
 
     default:
-      console.warn('Unknown message action in background:', message.action);
+      // console.warn('Unknown message action in background:', message.action);
   }
 });
 
@@ -92,21 +92,21 @@ async function applySpeedToAllYouTubeTabs(speed) {
         },
         (response) => {
           if (chrome.runtime.lastError) {
-            console.log('Could not apply speed to tab:', tab.id, chrome.runtime.lastError.message);
+            // console.log('Could not apply speed to tab:', tab.id, chrome.runtime.lastError.message);
           } else {
-            console.log('Speed applied to tab:', tab.id, response);
+            // console.log('Speed applied to tab:', tab.id, response);
           }
         }
       );
     });
   } catch (error) {
-    console.error('Error applying speed to all YouTube tabs:', error);
+    // console.error('Error applying speed to all YouTube tabs:', error);
   }
 }
 
 // Handle browser startup - restore speeds to any open YouTube tabs
 chrome.runtime.onStartup.addListener(async () => {
-  console.log('Browser startup detected');
+  // console.log('Browser startup detected');
 
   try {
     const result = await chrome.storage.local.get(['speedSettings', 'currentSpeed']);
@@ -118,13 +118,13 @@ chrome.runtime.onStartup.addListener(async () => {
       }, 5000);
     }
   } catch (error) {
-    console.error('Error in startup handler:', error);
+    // console.error('Error in startup handler:', error);
   }
 });
 
 // Cleanup function
 function cleanup() {
-  console.log('Background script cleanup');
+  // console.log('Background script cleanup');
 }
 
 // Handle extension suspension

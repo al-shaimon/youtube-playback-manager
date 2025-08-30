@@ -33,7 +33,7 @@ class YouTubeSpeedManager {
         this.currentSpeed = parseFloat(result.currentSpeed);
       }
     } catch (error) {
-      console.error('Error loading settings:', error);
+      // console.error('Error loading settings:', error);
     }
   }
 
@@ -44,7 +44,7 @@ class YouTubeSpeedManager {
         currentSpeed: this.currentSpeed,
       });
     } catch (error) {
-      console.error('Error saving settings:', error);
+      // console.error('Error saving settings:', error);
     }
   }
 
@@ -146,12 +146,12 @@ class YouTubeSpeedManager {
 
   async applySpeedToCurrentTab() {
     try {
-      console.log('Attempting to apply speed:', this.currentSpeed);
+      // console.log('Attempting to apply speed:', this.currentSpeed);
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-      console.log('Current tab:', tab);
+      // console.log('Current tab:', tab);
 
       if (tab && tab.url && tab.url.includes('youtube.com')) {
-        console.log('Sending message to YouTube tab');
+        // console.log('Sending message to YouTube tab');
 
         // Send speed message with better error handling
         chrome.tabs.sendMessage(
@@ -173,24 +173,24 @@ class YouTubeSpeedManager {
                 return;
               }
               // Log other unexpected errors only to console, not as extension errors
-              console.debug('Speed message issue:', error);
+              // console.debug('Speed message issue:', error);
               return;
             }
 
-            console.log('Speed response:', response);
+            // console.log('Speed response:', response);
             if (response && !response.success) {
               this.showError('Speed could not be applied to video.');
             } else {
-              console.log('Speed applied successfully');
+              // console.log('Speed applied successfully');
             }
           }
         );
       } else {
-        console.log('Not on YouTube page');
+        // console.log('Not on YouTube page');
         this.showError('Please navigate to a YouTube video page first.');
       }
     } catch (error) {
-      console.error('Error applying speed to tab:', error);
+      // console.error('Error applying speed to tab:', error);
       this.showError("Failed to apply speed. Make sure you're on a YouTube page.");
     }
   }
