@@ -146,6 +146,12 @@ youtube-playback-manager/
 
 ## 🔧 Troubleshooting
 
+> **Disclaimer:** Using very high or very low playback speeds for extended periods can cause issues
+> with video loading, playback availability, or content restrictions on YouTube. In some cases,
+> videos may fail to load correctly or display a "content not available" message when played at
+> extreme speeds. If you encounter such behavior, reduce the playback speed toward normal (e.g.,
+> 1.0x), refresh the page, or disable the extension temporarily.
+
 ### Common Issues
 
 #### Speed Not Applying
